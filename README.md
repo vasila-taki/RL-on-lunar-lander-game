@@ -1,7 +1,7 @@
 ## Lunar Lander with RL 
 
 Lunar Lander like game.
-The game allows you either to play it yourself or implement the DQN algorithm in order to solve it.
+The game allows you either to play it yourself or implement the DQN algorithm (vanilla DQN, standard DQN or DDQN), in order to solve it.
 
 **Requirements**:
 - Python3
