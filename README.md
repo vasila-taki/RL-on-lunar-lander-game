@@ -1,7 +1,7 @@
 ## Lunar Lander with RL 
 
 My Thesis for my Master's degree in Control and Computing, UoA:
-Application of Reinforcement Learning methods in solving a Lunar Lander game
+## **Application of Reinforcement Learning methods in solving a Lunar Lander game**
 
 
 #### The game allows you either to play it yourself or implement various flavours of the DQN algorithm (vanilla DQN, standard DQN or DDQN), in order to solve it.
