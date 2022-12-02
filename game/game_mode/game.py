@@ -213,9 +213,9 @@ class Lander:
         self.exploded_lander_image = pygame.image.load('game_mode/exploded_lander.png').convert_alpha()
         
         # Load sounds
-        #self.thrust_sound = pygame.mixer.Sound('game_mode/thrust.ogg')
-        #self.explosion_sound = pygame.mixer.Sound('game_mode/explosion.ogg')
-        #self.landed_sound = pygame.mixer.Sound('game_mode/landed.ogg')
+        self.thrust_sound = pygame.mixer.Sound('game_mode/thrust.ogg')
+        self.explosion_sound = pygame.mixer.Sound('game_mode/explosion.ogg')
+        self.landed_sound = pygame.mixer.Sound('game_mode/landed.ogg')
 
         # Initialise variables
         self.display_lander_image = self.lander_image
@@ -384,8 +384,8 @@ class Lander:
 
                 
                 # Play thrust sound effect
-                #if pygame.mixer.get_busy() == 0:
-                    #self.thrust_sound.play()
+                if pygame.mixer.get_busy() == 0:
+                    self.thrust_sound.play()
         
             else:
                 if self.side_engines == 1:
@@ -401,7 +401,7 @@ class Lander:
                         self.angle = +90
 
                 self.display_lander_image = pygame.transform.rotate(self.lander_image, self.angle)
-                #self.thrust_sound.stop()
+                self.thrust_sound.stop()
 
 
         else:
@@ -437,8 +437,8 @@ class Game:
         
         # setup game
         os.environ['SDL_VIDEO_CENTERED'] = '1'
-        #pygame.mixer.pre_init(44100, -16, 2, 512)
-        #pygame.mixer.init()
+        pygame.mixer.pre_init(44100, -16, 2, 512)
+        pygame.mixer.init()
         pygame.init()
 
         self.screen = pygame.display.set_mode((Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT))
@@ -542,7 +542,7 @@ class Game:
 
                         self.change_level()
 
-                        #pygame.mixer.stop()
+                        pygame.mixer.stop()
 
 
 
