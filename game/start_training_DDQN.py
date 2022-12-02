@@ -240,36 +240,36 @@ def run_experiment_for_ed():
 
 
 if __name__ == '__main__':
-    #env = Env()
+    env = Env()
 
     # setting up params
-    #lr = 0.001
-    #epsilon = 1.0
-    #epsilon_decay = 0.995
-    #gamma = 0.99
-    #training_episodes = 1000
-    #upd_freq = 5
-    #batch_size = 32
-    #print('St')
-    #model = DDQN(env, lr, gamma, epsilon, epsilon_decay, upd_freq, batch_size)
+    lr = 0.001
+    epsilon = 1.0
+    epsilon_decay = 0.995
+    gamma = 0.99
+    training_episodes = 1000
+    upd_freq = 5
+    batch_size = 32
+    print('St')
+    model = DDQN(env, lr, gamma, epsilon, epsilon_decay, upd_freq, batch_size)
     
-    #start_time = datetime.datetime.now()
-    #model.train(training_episodes, True)
-    #print("srart of training:", start_time)
-    #print("end of training", datetime.datetime.now())
+    start_time = datetime.datetime.now()
+    model.train(training_episodes, True)
+    print("srart of training:", start_time)
+    print("end of training", datetime.datetime.now())
 
     # Save Everything
     save_dir = "saved_models"
     # Save trained model
-    #model.save(save_dir + "trained_model_DDQN_simple.h5")
+    model.save(save_dir + "trained_model_DDQN_simple.h5")
 
     # Save Rewards list
-    #pickle.dump(model.rewards_list, open(save_dir + "train_rewards_list_DDQN_simple.p", "wb"))
-    #rewards_list = pickle.load(open(save_dir + "train_rewards_list_DDQN_simple.p", "rb"))
+    pickle.dump(model.rewards_list, open(save_dir + "train_rewards_list_DDQN_simple.p", "wb"))
+    rewards_list = pickle.load(open(save_dir + "train_rewards_list_DDQN_simple.p", "rb"))
 
     # plot reward in graph
-    #reward_df = pd.DataFrame(rewards_list)
-    #plot_df(reward_df, "Figure 1: Reward for each training episode_DDQN_simple", "Reward for each training episode", "Episode","Reward")
+    reward_df = pd.DataFrame(rewards_list)
+    plot_df(reward_df, "Figure 1: Reward for each training episode_DDQN_simple", "Reward for each training episode", "Episode","Reward")
 
     # Test the model
     trained_model = load_model(save_dir + "trained_model_DDQN.h5")
