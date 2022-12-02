@@ -209,36 +209,36 @@ def run_experiment_for_ed():
 
 
 if __name__ == '__main__':
-    #env = Env()
+    env = Env()
 
     # setting up params
-    #lr = 0.001
-    #epsilon = 1.0
-    #epsilon_decay = 0.995
-    #gamma = 0.99
-    #training_episodes = 1000
-    #batch_size = 128
+    lr = 0.001
+    epsilon = 1.0
+    epsilon_decay = 0.995
+    gamma = 0.99
+    training_episodes = 1000
+    batch_size = 128
 
-    #print('St')
-    #model = DQN(env, lr, gamma, epsilon, epsilon_decay, batch_size)
+    print('St')
+    model = DQN(env, lr, gamma, epsilon, epsilon_decay, batch_size)
     
-    #start_time = datetime.datetime.now()
-    #model.train(training_episodes, True)
-    #print("srart of training:", start_time)
-    #print("end of training", datetime.datetime.now())
+    start_time = datetime.datetime.now()
+    model.train(training_episodes, True)
+    print("srart of training:", start_time)
+    print("end of training", datetime.datetime.now())
 
     # Save Everything
     save_dir = "saved_models"
     # Save trained model
-    #model.save(save_dir + "trained_model_simple_vanillaDQN.h5")
+    model.save(save_dir + "trained_model_simple_vanillaDQN.h5")
 
     # Save Rewards list
-    #pickle.dump(model.rewards_list, open(save_dir + "train_rewards_list_simple_vanillaDQN.p", "wb"))
-    #rewards_list = pickle.load(open(save_dir + "train_rewards_list_simple_vanillaDQN.p", "rb"))
+    pickle.dump(model.rewards_list, open(save_dir + "train_rewards_list_simple_vanillaDQN.p", "wb"))
+    rewards_list = pickle.load(open(save_dir + "train_rewards_list_simple_vanillaDQN.p", "rb"))
 
     # plot reward in graph
-    #reward_df = pd.DataFrame(rewards_list)
-    #plot_df(reward_df, "Figure 1: Reward for each training episode_simple_vanillaDQN", "Reward for each training episode", "Episode","Reward")
+    reward_df = pd.DataFrame(rewards_list)
+    plot_df(reward_df, "Figure 1: Reward for each training episode_simple_vanillaDQN", "Reward for each training episode", "Episode","Reward")
 
     # Test the model
     trained_model = load_model(save_dir + "trained_model_vanillaDQN.h5")
@@ -247,7 +247,7 @@ if __name__ == '__main__':
     test_rewards = pickle.load(open(save_dir + "test_rewards_vanillaDQN.p", "rb"))
 
     plot_df2(pd.DataFrame(test_rewards), "Figure 2: Reward for each testing episode__vanillaDQN","Reward for each testing episode", "Episode", "Reward")
-    #print("Training and Testing Completed...!")
+    print("Training and Testing Completed...!")
 
     # Run experiments for hyper-parameter
     #run_experiment_for_lr()
