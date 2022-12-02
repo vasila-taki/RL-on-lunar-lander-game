@@ -563,65 +563,65 @@ class Game:
 
 
     def render(self):
-        if(self.game_mode == "human"):
-            # Display background
-            self.screen.blit(self.background_image, [0, 0])
-            
-            # Display planet
-            for block_number, block in enumerate(self.environment.planet):
-                terrain_type = block.get('terrain_type')
-                terrain_y = block.get('terrain_y')
-                
+        #if(self.game_mode == "human"):
+        # Display background
+        self.screen.blit(self.background_image, [0, 0])
+
+        # Display planet
+        for block_number, block in enumerate(self.environment.planet):
+            terrain_type = block.get('terrain_type')
+            terrain_y = block.get('terrain_y')
+
+            block_x = block_number * self.environment.terrain_block_size
+            block_y = terrain_y * self.environment.terrain_block_size
+
+            self.screen.blit(terrain_type, [block_x, block_y])
+
+            # Display blank blocks below terrain surface
+            for blank_block in range(terrain_y + 1, Config.MAX_TERRAIN_HEIGHT):
                 block_x = block_number * self.environment.terrain_block_size
-                block_y = terrain_y * self.environment.terrain_block_size
-                
-                self.screen.blit(terrain_type, [block_x, block_y])
-                
-                # Display blank blocks below terrain surface
-                for blank_block in range(terrain_y + 1, Config.MAX_TERRAIN_HEIGHT):
-                    block_x = block_number * self.environment.terrain_block_size
-                    block_y = blank_block * self.environment.terrain_block_size
-                    self.screen.blit(self.environment.planet_blank_image, [block_x, block_y])
+                block_y = blank_block * self.environment.terrain_block_size
+                self.screen.blit(self.environment.planet_blank_image, [block_x, block_y])
 
-            # Display lander
-            self.screen.blit(self.lander.display_lander_image, self.lander.lander_rect)
-                
-            # Landed messages
-            if self.lander.hit_terrain is True:
-                if self.game_mode == 'human':
-                
-                    if self.lander.landed is True:
-                        self.display_successful_landing()
-                        self.return_message_text = 'Hit return for next level.'
-                        self.level_score = self.lander.fuel * self.level + (self.lander.landing_angle - abs(self.lander.angle)) * 10 * self.level
-                        
-                    else:
-                        self.display_failed_landing(self.lander.on_screen, self.lander.fuel_left, self.lander.velocity_ok, self.lander.landing_location_ok, self.lander.angle_ok)
-                        self.level_score = 0
-                        self.return_message_text = 'Hit return for new game.'
-                        
-                    if self.total_score + self.level_score > self.hi_score:
-                        self.hi_score = self.total_score + self.level_score
-                        
-                    
-                    self.display_game_end(self.level_score, self.total_score + self.level_score, self.hi_score, self.return_message_text)
-                
-            else:
-                self.display_status(self.lander.fuel, self.lander.vx, self.lander.landing_velocity, self.lander.vy, self.lander.angle, self.lander.landing_angle, self.level)
-                
-            if(self.lander.exploded is True):
-                if self.level_end_sound_played is False:
-                    self.lander.explosion_sound.play()
-                    self.level_end_sound_played = True
+        # Display lander
+        self.screen.blit(self.lander.display_lander_image, self.lander.lander_rect)
 
-            if(self.lander.landed is True):
-                if self.level_end_sound_played is False:
-                    self.lander.landed_sound.play()
-                    self.level_end_sound_played = True
+        # Landed messages
+        if self.lander.hit_terrain is True:
+            if self.game_mode == 'human':
 
-            pygame.display.update()
-            if(self.game_mode == 'human'):
-                self.clock.tick(60)
+                if self.lander.landed is True:
+                    self.display_successful_landing()
+                    self.return_message_text = 'Hit return for next level.'
+                    self.level_score = self.lander.fuel * self.level + (self.lander.landing_angle - abs(self.lander.angle)) * 10 * self.level
+
+                else:
+                    self.display_failed_landing(self.lander.on_screen, self.lander.fuel_left, self.lander.velocity_ok, self.lander.landing_location_ok, self.lander.angle_ok)
+                    self.level_score = 0
+                    self.return_message_text = 'Hit return for new game.'
+
+                if self.total_score + self.level_score > self.hi_score:
+                    self.hi_score = self.total_score + self.level_score
+
+
+                self.display_game_end(self.level_score, self.total_score + self.level_score, self.hi_score, self.return_message_text)
+
+        else:
+            self.display_status(self.lander.fuel, self.lander.vx, self.lander.landing_velocity, self.lander.vy, self.lander.angle, self.lander.landing_angle, self.level)
+
+        if(self.lander.exploded is True):
+            if self.level_end_sound_played is False:
+                self.lander.explosion_sound.play()
+                self.level_end_sound_played = True
+
+        if(self.lander.landed is True):
+            if self.level_end_sound_played is False:
+                self.lander.landed_sound.play()
+                self.level_end_sound_played = True
+
+        pygame.display.update()
+        if(self.game_mode == 'human'):
+            self.clock.tick(60)
         
     
     # Successful landing message
