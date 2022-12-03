@@ -37,7 +37,7 @@ For playing the game yourself():
 python3 start_human.py 
 ```
 
-For training the RL agents using vanilla DQN or standard DQN or DDQN algorithm, and then test the trained model:
+For training the RL agent using vanilla DQN or standard DQN or DDQN algorithm, and then testing the trained model:
 ```
 python3 start_training_vanillaDQN.py 
 or
