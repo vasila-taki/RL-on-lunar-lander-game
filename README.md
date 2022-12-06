@@ -32,7 +32,7 @@ The project is consisted of the following files/folders:
 
 #### How-to run
 
-For playing the game yourself():  
+For playing the game yourself:  
 ```
 python3 start_human.py 
 ```
